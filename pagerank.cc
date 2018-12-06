@@ -3,7 +3,7 @@
 #define pid pair<int,double>
 
 using namespace std;
-
+const double d = 0.15;
 struct Edge
 {
 	int to;
@@ -51,20 +51,16 @@ void solve() // use iteration to calculate pagerank
 			next_pagerank[u] = 0;
 		for (int u = 1 ; u <= n ; u++)
 			{
-				int count = 0;
 				for (int i = head[u];~i;i=edge[i].next)
 				{
 					int v = edge[i].to;
 					next_pagerank[v] += pagerank[u]/out[u] ;
-					count++;
 				}
-				if (!count) 
-					next_pagerank[u] += pagerank[u];
 			}
 		maxdiff = 0;
 		for (int u = 1 ; u <= n ; u++)
-			maxdiff = max(maxdiff , abs(pagerank[u] - next_pagerank[u])),
-			pagerank[u] = next_pagerank[u];	
+			maxdiff = max(maxdiff , abs(pagerank[u] - ((1 - d ) + d * next_pagerank[u]))),
+			pagerank[u] = (1 - d ) + d * next_pagerank[u];	
 	}	
 }
 

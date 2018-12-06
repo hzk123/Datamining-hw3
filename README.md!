@@ -1,26 +1,22 @@
-# Datamining-hw3
-
-## Running Environment 
+# Running Environment 
 g++ (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
+all g++ version is ok 
 
-ok for all version g++
-
-## Usage for pagerank
+# Useage for pagerank
 ``` 
 g++ pagerank.cc -o pagerank
-./pagerank [inputfile]
+./pagerank [inputfile] 
 ```
 
 ```
 example:
-g++ pagerank.cc -o pagerank
-./pagerank graph_1.txt
+g++ pagerank.cc -o pagerank 
+./pagerank graph_1.txt 
 
 ```
 
-
-
-## Usage for hits
+# Useage for hits
+``` 
 g++ hits.cc -o hits
 ./hits [inputfile]
 ```
@@ -32,7 +28,8 @@ g++ hits.cc -o hits
 
 ```
 
-## Usage for simrank
+# Useage for simrank
+``` 
 g++ simrank.cc -o simrank
 ./simrank [inputfile]
 ```
