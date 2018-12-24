@@ -3,10 +3,10 @@ using namespace std;
 
 int main()
 {
-    freopen("graph_7.txt","r",stdin);
-    freopen("graph_8.txt","w",stdout);
+    freopen("hw1.txt","r",stdin);
+    freopen("graph_7.txt","w",stdout);
     int u , v;
     while (scanf("%d%d",&u,&v)!=EOF)
-        printf("%d %d\n",v,u);
+        printf("%d,%d\n",u,v);
     return 0;
 }

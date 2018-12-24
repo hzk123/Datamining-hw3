@@ -38,22 +38,22 @@ void get_graph(char* path)
 	freopen(path,"r",stdin);
 	init();
 	int u , v;
-	while(scanf("%d,%d",&u,&v)!=EOF) 
+	while(scanf("%d,%d",&u,&v)!=EOF)
 		add(v,u),  // get inverse edge
 		in[u]++;
 		n = max(n , max(u,v));
 }
 
 
-void solve() //get  simrank martix 
+void solve() //get  simrank martix
 {
 
 	double maxdiff = 2333333;
 	for (int i = 1 ; i <= n ; i++)
 		for (int j = 1 ; j <= n ; j++)
-			if (i == j ) 
+			if (i == j )
 				simrank[i][j] = 1 ;
-			else 	
+			else
 				simrank[i][j] = 0;
 	for (; maxdiff > 1e-10 ;)
 	{
@@ -62,7 +62,7 @@ void solve() //get  simrank martix
 			if (u != v)
 			{
 				double sum = 0;
-				for (int i = head[u] ; ~i ; i = edge[i].next) 
+				for (int i = head[u] ; ~i ; i = edge[i].next)
 					for (int j = head[v]; ~j ; j = edge[j].next)
 						{
 							//cout << u << "  " << v << " " << edge[i].to << " " << edge[j].to << endl;
@@ -71,20 +71,20 @@ void solve() //get  simrank martix
 				//cout << u << " " << v<< " " <<sum << endl;
 				if (in[u] * in[v])
 					next_simrank[u][v] = ( C / (in[u] * in[v] ) ) * sum;
-				else 
+				else
 					next_simrank[u][v] = 0;
 			}
-			else 
+			else
 				next_simrank[u][v] = 1;
 		maxdiff = 0;
 		for (int u = 1 ; u <= n ; u++)
 			for (int v = 1 ; v <= n ; v++)
 				maxdiff = max( maxdiff , abs(simrank[u][v] - next_simrank[u][v])),
-				simrank[u][v] = next_simrank[u][v];	
-		
-		cout << maxdiff << endl;
+				simrank[u][v] = next_simrank[u][v];
+
+		//cout << maxdiff << endl;
 	}
-	
+
 }
 
 struct r
@@ -104,15 +104,18 @@ void output()
 			if (i!=j)
 			rk[++tot].x = i,rk[tot].y=j,rk[tot].simrank = simrank[i][j];
 	sort(rk+1,rk+1+tot,cmp);
+
+    printf("all result that simrank > 0\n");
 	for (int i = 1 ; i <= tot; i++)
-	       	if (rk[i].simrank > eps )
-			printf("(%d,%d) : simrank = %.4f\n",rk[i].x,rk[i].y,rk[i].simrank);	
-	
+    {
+        if (rk[i].simrank > eps )
+		printf("(%d,%d) : simrank = %.4f\n",rk[i].x,rk[i].y,rk[i].simrank);
+    }
 }
 int main(int argc,char** argv)
 {
 	get_graph(argv[1]);
-	solve();	
+	solve();
 	output();
 	return 0;
 }

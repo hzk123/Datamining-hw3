@@ -62,7 +62,7 @@ void solve() // use iteration to calculate pagerank
 		for (int u = 1 ; u <= n ; u++)
 			maxdiff = max(maxdiff , abs(pagerank[u] - ((1 - d ) + d * next_pagerank[u]))),
 			pagerank[u] = (1 - d ) + d * next_pagerank[u];
-	    printf("%f\n",maxdiff);
+	    //printf("%f\n",maxdiff);
     }
 }
 
