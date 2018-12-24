@@ -34,7 +34,7 @@ void get_graph(char* path)
 	freopen(path,"r",stdin);
 	init();
 	int u , v;
-	while(scanf("%d,%d",&u,&v)!=EOF) 
+	while(scanf("%d,%d",&u,&v)!=EOF)
 		add(u,v),
 		n = max(n , max(u,v));
 }
@@ -45,6 +45,7 @@ void solve() // use iteration to calculate pagerank
 	double maxdiff = 233333;
 	for (int u = 1 ; u <= n ; u++)
 		pagerank[u] = 1;
+
 	while ( maxdiff > eps)
 	{
 		for (int u = 1 ; u <= n ; u++)
@@ -60,8 +61,9 @@ void solve() // use iteration to calculate pagerank
 		maxdiff = 0;
 		for (int u = 1 ; u <= n ; u++)
 			maxdiff = max(maxdiff , abs(pagerank[u] - ((1 - d ) + d * next_pagerank[u]))),
-			pagerank[u] = (1 - d ) + d * next_pagerank[u];	
-	}	
+			pagerank[u] = (1 - d ) + d * next_pagerank[u];
+	    printf("%f\n",maxdiff);
+    }
 }
 
 pid rk[200020];
@@ -73,7 +75,7 @@ bool cmp(pid a,pid b)
 void output()
 {
 	for (int i = 1 ; i <= n ; i++)
-		rk[i] = make_pair(i,pagerank[i]);	
+		rk[i] = make_pair(i,pagerank[i]);
 	sort(rk+1,rk+1+n,cmp);
 
 	for (int i = 1 ; i <= n ; i++)
@@ -83,7 +85,7 @@ void output()
 int main(int argc,char** argv)
 {
 	get_graph(argv[1]);
-	solve();	
+	solve();
 	output();
 	return 0;
 }
